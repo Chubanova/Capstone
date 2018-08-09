@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,9 +33,11 @@ import moera.ermais.google.com.myplaces.R;
 import moera.ermais.google.com.myplaces.database.PlaceLoader;
 import moera.ermais.google.com.myplaces.utils.Utils;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, OnClickListener {
+    @Nullable
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
+    @Nullable
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     OnClickListener mCallback;
@@ -63,14 +66,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        mNavigationView.setNavigationItemSelectedListener(
-                menuItem -> {
-                    menuItem.setChecked(true);
-                    Utils.goMenu(this, menuItem.getItemId());
-                    mDrawerLayout.closeDrawers();
+        if (mNavigationView != null)
+            mNavigationView.setNavigationItemSelectedListener(
+                    menuItem -> {
+                        menuItem.setChecked(true);
+                        Utils.goMenu(this, menuItem.getItemId());
+                        mDrawerLayout.closeDrawers();
 
-                    return true;
-                });
+                        return true;
+                    });
     }
 
     @Override
@@ -198,5 +202,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onResume() {
         super.onResume();
         loadPlaces();
+    }
+
+    @Override
+    public void onClick(double lat, double lng) {
+        Log.d(TAG, "Pressed place");
+        // Edit or remove marker
+        Intent intent = new Intent();
+        intent.setClass(this, AddPlaceActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putDouble("lat", lat);
+        bundle.putDouble("lng", lng);
+        intent.putExtras(bundle);
+        getApplicationContext().startActivity(intent);
     }
 }

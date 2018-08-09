@@ -10,16 +10,17 @@ import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import moera.ermais.google.com.myplaces.OnClickListener;
 import moera.ermais.google.com.myplaces.R;
 import moera.ermais.google.com.myplaces.fragment.AllPlacesFragment;
 import moera.ermais.google.com.myplaces.utils.Utils;
 
-public class AllPlacesActivity extends AppCompatActivity implements AllPlacesFragment.OnClickListener {
+public class AllPlacesActivity extends AppCompatActivity implements OnClickListener {
     public static final String TAG = AllPlacesActivity.class.getSimpleName();
     @BindView(R.id.nav_view_all)
     NavigationView mNavigationView;
     @BindView(R.id.drawer_layout)
-     DrawerLayout mDrawerLayout;
+    DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
