@@ -21,7 +21,7 @@ public class PlacesCursorAdapter extends RecyclerView.Adapter<PlacesCursorAdapte
 
     private Context mContext;
     private Cursor mCursor;
-    private static AllPlacesFragment.OnClickListener listener;
+    private static OnClickListener listener;
 
 
     /**
@@ -32,7 +32,7 @@ public class PlacesCursorAdapter extends RecyclerView.Adapter<PlacesCursorAdapte
     public PlacesCursorAdapter(Context context, Cursor cursor) {
         this.mContext = context;
         this.mCursor = cursor;
-        this.listener = (AllPlacesFragment.OnClickListener) context;
+        this.listener = (OnClickListener) context;
 
     }
 
@@ -130,7 +130,7 @@ public class PlacesCursorAdapter extends RecyclerView.Adapter<PlacesCursorAdapte
         }
 
 
-        public void bind(double lat, double lng, final AllPlacesFragment.OnClickListener listener) {
+        public void bind(double lat, double lng, final OnClickListener listener) {
             addressTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import moera.ermais.google.com.myplaces.OnClickListener;
 import moera.ermais.google.com.myplaces.R;
 import moera.ermais.google.com.myplaces.database.PlaceLoader;
 import moera.ermais.google.com.myplaces.utils.Utils;
@@ -36,6 +37,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     NavigationView mNavigationView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    OnClickListener mCallback;
 
     private static final String TAG = MapActivity.class.getName();
 

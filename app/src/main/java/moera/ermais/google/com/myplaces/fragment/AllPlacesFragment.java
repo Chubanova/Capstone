@@ -24,6 +24,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import moera.ermais.google.com.myplaces.OnClickListener;
 import moera.ermais.google.com.myplaces.PlacesCursorAdapter;
 import moera.ermais.google.com.myplaces.R;
 import moera.ermais.google.com.myplaces.service.GeoService;
@@ -42,9 +43,6 @@ public class AllPlacesFragment extends Fragment implements LoaderManager.LoaderC
     // Define a new interface OnImageClickListener that triggers a callback in the host activity
     OnClickListener mCallback;
 
-    public interface OnClickListener {
-        void onClick(double lat, double lng);
-    }
 
     //mandatory empty constructor
     public AllPlacesFragment() {
