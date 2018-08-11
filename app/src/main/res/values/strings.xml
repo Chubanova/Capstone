@@ -13,6 +13,8 @@
     <string name="map">View map</string>
     <string name="places">All my places</string>
     <string name="place">Place</string>
+    <string name="place_descr">Place description</string>
+    <string name="notification_message">Notification message</string>
     <string name="silent_mode_activated">Silent mode activated</string>
     <string name="touch_to_relaunch">Touch to launch the app.</string>
     <string name="back_to_normal">Back to normal</string>

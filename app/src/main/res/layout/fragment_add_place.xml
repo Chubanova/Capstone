@@ -28,7 +28,8 @@
                     android:paddingBottom="4dp"
                     android:paddingEnd="8dp"
                     android:paddingTop="4dp"
-                    android:src="@drawable/ic_globe_primary_24dp" />
+                    android:src="@drawable/ic_globe_primary_24dp"
+                    android:contentDescription="@string/place_descr"/>
 
                 <TextView
                     android:id="@+id/placeTV"
@@ -51,7 +52,8 @@
                     android:paddingBottom="4dp"
                     android:paddingEnd="8dp"
                     android:paddingTop="4dp"
-                    android:src="@drawable/comment_outline" />
+                    android:src="@drawable/comment_outline"
+                    android:contentDescription="@string/notification_message"/>
 
                 <EditText
                     android:id="@+id/editTextNotify"
