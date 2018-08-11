@@ -76,7 +76,7 @@ public class AllPlacesFragment extends Fragment implements LoaderManager.LoaderC
                 if (viewHolder.itemView.getTag() != null) {
 
                     int id = (int) viewHolder.itemView.getTag();
-                    Log.d(TAG, "Removed place: " + id);
+                    Log.d(TAG, getContext().getString(R.string.removed_place + id));
 
                     String stringId = Integer.toString(id);
                     Uri uri = CONTENT_URI;
@@ -85,7 +85,7 @@ public class AllPlacesFragment extends Fragment implements LoaderManager.LoaderC
                     int res = getContext().getContentResolver().delete(uri, null, null);
 
                     if (res != 0) {
-                        Log.d(TAG, "Removed place: " + stringId);
+                        Log.d(TAG, getContext().getString(R.string.removed_place) + stringId);
                     }
 
                     restartService();
@@ -136,7 +136,7 @@ public class AllPlacesFragment extends Fragment implements LoaderManager.LoaderC
                     return p.query(uri, null, null, null, null);
 
                 } catch (Exception e) {
-                    Log.e(TAG, "Failed to asynchronously load data.");
+                    Log.e(TAG, getContext().getString(R.string.fail_async));
                     e.printStackTrace();
                     return null;
                 }

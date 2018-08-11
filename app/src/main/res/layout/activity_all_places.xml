@@ -46,7 +46,8 @@
             app:elevation="6dp"
             app:fabSize="normal"
             android:layout_gravity="bottom|end"
-            app:pressedTranslationZ="12dp" />
+            app:pressedTranslationZ="12dp"
+            android:contentDescription="@string/add_new_location"/>
     </android.support.design.widget.CoordinatorLayout>
 
     <!--Menu-->

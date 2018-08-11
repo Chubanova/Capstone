@@ -26,4 +26,19 @@
     <string name="notification_text_many">There is some interesting near you! Open app and check it out</string>
     <string name="appwidget_text">Nearest place</string>
     <string name="place_header">Place:</string>
+    <string name="toast">Please set notification text</string>
+    <string name="no_place_selected">No place selected</string>
+    <string name="pressed_place">Pressed place </string>
+    <string name="pressed_marker">Pressed marker: </string>
+    <string name="lat">lat</string>
+    <string name="lng">lng</string>
+    <string name="notify_capstone">notify_capstone</string>
+    <string name="fail_async">Failed to asynchronously load data.</string>
+    <string name="removed_place">Removed place: </string>
+    <string name="saved_place">Saved place: </string>
+    <string name="exception">Exception: %s</string>
+    <string name="error_code">Error code : %d</string>
+    <string name="unknown_transition">"Unknown transition : %d</string>
+    <string name="current_location_is_null">Current location is null. Using defaults.</string>
+    <string name="channel">Channel human readable title</string>
 </resources>

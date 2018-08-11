@@ -51,7 +51,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         // Get the Geofence Event from the Intent sent through
         GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
         if (geofencingEvent.hasError()) {
-            Log.e(TAG, String.format("Error code : %d", geofencingEvent.getErrorCode()));
+            Log.e(TAG, String.format(context.getString(R.string.error_code), geofencingEvent.getErrorCode()));
             return;
         }
 
@@ -62,7 +62,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
             setRingerMode(context, AudioManager.RINGER_MODE_SILENT);
         } else {
             // Log the error.
-            Log.e(TAG, String.format("Unknown transition : %d", geofenceTransition));
+            Log.e(TAG, String.format(context.getString(R.string.unknown_transition), geofenceTransition));
             // No need to do anything else
             return;
         }
@@ -99,7 +99,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
                 stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Get a notification builder
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notify_capstone");
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, context.getString(R.string.notify_capstone));
 
         // Check the transition type to display the relevant icon image
         if (geofencingEvent.getGeofenceTransition() == Geofence.GEOFENCE_TRANSITION_ENTER) {
@@ -151,8 +151,8 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("notify_capstone",
-                    "Channel human readable title",
+            NotificationChannel channel = new NotificationChannel(context.getString(R.string.notify_capstone),
+                    context.getString(R.string.channel),
                     NotificationManager.IMPORTANCE_DEFAULT);
             mNotificationManager.createNotificationChannel(channel);
         }
@@ -168,7 +168,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 
             int res = context.getContentResolver().delete(uri, null, null);
             if (res != 0) {
-                Log.d(TAG, "Removed place: " + stringId);
+                Log.d(TAG, context.getString(R.string.removed_place) + stringId);
             }
         }
 

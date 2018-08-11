@@ -103,25 +103,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.getUiSettings().setTiltGesturesEnabled(true);
 
         mMap.setOnMapLongClickListener(latLng -> {
-            Log.d(TAG, "Pressed place: " + latLng);
+            Log.d(TAG, this.getString(R.string.pressed_place) + latLng);
             try {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
                 LatLngBounds latLngBounds = new LatLngBounds(latLng, latLng);
                 builder = builder.setLatLngBounds(latLngBounds);
                 startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
             } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-                Log.e(TAG, "Error: " + e.getMessage());
+                Log.e(TAG,  e.getMessage());
             }
         });
 
         mMap.setOnMarkerClickListener(marker -> {
-            Log.d(TAG, "Pressed marker: " + marker.getTitle());
+            Log.d(TAG, this.getString(R.string.pressed_marker) + marker.getTitle());
             // Edit or remove marker
             Intent intent = new Intent();
             intent.setClass(this, AddPlaceActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putDouble("lat", marker.getPosition().latitude);
-            bundle.putDouble("lng", marker.getPosition().longitude);
+            bundle.putDouble(this.getString(R.string.lat), marker.getPosition().latitude);
+            bundle.putDouble(this.getString(R.string.lng), marker.getPosition().longitude);
             intent.putExtras(bundle);
             getApplicationContext().startActivity(intent);
             return true;
@@ -150,15 +150,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                         mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                 }
                 if (!locationExists) {
-                    Log.d(TAG, "Current location is null. Using defaults.");
-                    Log.e(TAG, String.format("Exception: %s", task.getException()));
+                    Log.d(TAG, this.getString(R.string.current_location_is_null));
+                    Log.e(TAG, String.format(this.getString(R.string.exception), task.getException()));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(MOSCOW_LOCATION, DEFAULT_ZOOM));
                     // If task was unsuccessful app have no location permission so hide this button
                     mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 }
             });
         } catch (SecurityException | NullPointerException e) {
-            Log.e(TAG, String.format("Exception: %s", e.getMessage()));
+            Log.e(TAG, String.format(this.getString(R.string.exception), e.getMessage()));
         }
     }
 
@@ -174,7 +174,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
             Place place = PlacePicker.getPlace(this, data);
             if (place == null) {
-                Log.i(TAG, "No place selected");
+                Log.i(TAG, this.getString(R.string.no_place_selected));
                 return;
             }
 
@@ -206,13 +206,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onClick(double lat, double lng) {
-        Log.d(TAG, "Pressed place");
+        Log.d(TAG, this.getString(R.string.pressed_place));
         // Edit or remove marker
         Intent intent = new Intent();
         intent.setClass(this, AddPlaceActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putDouble("lat", lat);
-        bundle.putDouble("lng", lng);
+        bundle.putDouble(this.getString(R.string.lat), lat);
+        bundle.putDouble(this.getString(R.string.lng), lng);
         intent.putExtras(bundle);
         getApplicationContext().startActivity(intent);
     }

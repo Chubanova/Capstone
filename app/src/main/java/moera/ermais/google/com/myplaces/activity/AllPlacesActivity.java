@@ -46,13 +46,13 @@ public class AllPlacesActivity extends AppCompatActivity implements OnClickListe
 
     @Override
     public void onClick(double lat, double lng) {
-        Log.d(TAG, "Pressed place");
+        Log.d(TAG, this.getString(R.string.pressed_place));
         // Edit or remove marker
         Intent intent = new Intent();
         intent.setClass(this, AddPlaceActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putDouble("lat", lat);
-        bundle.putDouble("lng", lng);
+        bundle.putDouble(this.getString(R.string.lat), lat);
+        bundle.putDouble(this.getString(R.string.lng), lng);
         intent.putExtras(bundle);
         getApplicationContext().startActivity(intent);
     }

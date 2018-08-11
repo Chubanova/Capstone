@@ -97,11 +97,11 @@ public class PlaceFragment extends Fragment {
         // If the EditText input is empty -> don't create an entry
         String notify = mEditTextNotify.getText().toString();
         if (notify.length() == 0) {
-            Toast.makeText(getContext(), "Please set notification text", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getContext().getString(R.string.toast), Toast.LENGTH_LONG).show();
             return;
         }
         if (placeId == null) {
-            Log.i(TAG, "No place selected");
+            Log.i(TAG, getContext().getString(R.string.no_place_selected));
             return;
         }
 
@@ -121,7 +121,7 @@ public class PlaceFragment extends Fragment {
                 .insert(CONTENT_URI, contentValues);
 
         if (uri != null) {
-            Log.d(TAG, "Saved place: " + uri.toString());
+            Log.d(TAG, getContext().getString(R.string.saved_place) + uri.toString());
         }
 
         restartService();
@@ -139,11 +139,11 @@ public class PlaceFragment extends Fragment {
         // If the EditText input is empty -> don't create an entry
         String notify = mEditTextNotify.getText().toString();
         if (notify.length() == 0) {
-            Toast.makeText(getContext(), "Please set notification text", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getContext().getString(R.string.toast), Toast.LENGTH_LONG).show();
             return;
         }
         if (placeId == null) {
-            Log.i(TAG, "No place selected");
+            Log.i(TAG, getContext().getString(R.string.no_place_selected));
             return;
         }
 
@@ -176,7 +176,7 @@ public class PlaceFragment extends Fragment {
      */
     public void onClickRemPlace(View view) {
         if (placeId == null) {
-            Log.i(TAG, "No place selected");
+            Log.i(TAG, getContext().getString(R.string.no_place_selected));
             return;
         }
 
@@ -185,7 +185,7 @@ public class PlaceFragment extends Fragment {
                 .delete(CONTENT_URI, COLUMN_PLACE_ID + " = ? ", new String[]{placeId});
 
         if (res != 0) {
-            Log.d(TAG, "Removed place: " + placeId + " " + placeName);
+            Log.d(TAG, getContext().getString(R.string.removed_place) + placeId + " " + placeName);
         }
 
         restartService();
@@ -235,8 +235,8 @@ public class PlaceFragment extends Fragment {
      */
     private void configureExistsMarker(Intent data) {
         // Get params
-        double _lat = data.getDoubleExtra("lat", -1);
-        double _lng = data.getDoubleExtra("lng", -1);
+        double _lat = data.getDoubleExtra(getContext().getString(R.string.lat), -1);
+        double _lng = data.getDoubleExtra(getContext().getString(R.string.lng), -1);
 
         // This is impossible but anyway
         if (_lat == -1 || _lng == -1)
